@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>17Ps38841. Văn Nam</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+ <img src="../Lab2/bai1.html" alt="">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div id="navbar-container"></div>
+
+        <section class="row">
+            <aside id="slide-bar" class="col-sm-4 p-5"></aside>
+            <!-- Main content -->
+            <article id="content-area" class="col-sm-8 p-5"></article>
+        </section>
+
+        <footer class="row bg-danger p-3">dsjcjshjc</footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Load navbar from nav.html
+        fetch('../Lab1/nav.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-container').innerHTML = data;
+
+                // Attach click event to navbar links
+                document.querySelectorAll('.navbar-nav .nav-link, .dropdown-menu .dropdown-item').forEach(link => {
+                    link.addEventListener('click', function (event) {
+                        event.preventDefault(); // Prevent default link behavior
+
+                        const page = this.getAttribute('href');
+
+                        // Load content if href is not empty
+                        if (page && page !== '#') {
+                            loadContent(page);
+                        }
+                    });
+                });
+            });
+
+        // Function to load content into the article section
+        function loadContent(page) {
+            fetch(page)
+                .then(response => {
+                    if (response.ok) {
+                        return response.text();
+                    } else {
+                        throw new Error("Content not found");
+                    }
+                })
+                .then(data => {
+                    document.getElementById('content-area').innerHTML = data;
+                })
+                .catch(error => {
+                    console.error('Error loading content:', error);
+                });
+        }
+
+        // Load sidebar content from about.html
+        fetch('../Lab1/about.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('slide-bar').innerHTML = data;
+            });
+    </script>
+</body>
+</html>
