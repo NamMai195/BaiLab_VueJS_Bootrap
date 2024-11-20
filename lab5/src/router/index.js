@@ -11,22 +11,22 @@ const router = createRouter({
      },
     {
       path: '/lab5bai1',
-      name: 'about',
+      name: 'bai1',
       component: () => import('../views/lab5/bai1.vue'),
     },
     {
       path: '/lab5bai2',
-      name: 'about',
+      name: 'bai2',
       component: () => import('../views/lab5/bai2.vue'),
     },
     {
       path: '/lab5bai3',
-      name: 'about',
+      name: 'bai3',
       component: () => import('../views/lab5/bai3.vue'),
     },
     {
       path: '/lab5bai4',
-      name: 'about',
+      name: 'bai4',
       component: () => import('../views/lab5//bai4/bai4.vue'),
     },
   ],

@@ -1,20 +1,31 @@
 <template>
     <div>
       <h2>Tạo bài viết mới</h2>
-      <form @submit.prevent="addPost"> 
-        <div>
-          <label for="title">Tiêu đề:</label>
-          <input type="text" id="title" v-model="title">
+      <form @submit.prevent="addPost" class="row g-3 needs-validation" novalidate>
+        <div class="col-md-12">
+          <label for="title" class="form-label">Tiêu đề:</label>
+          <input type="text" id="title" v-model="title" class="form-control" required>
+          <div class="invalid-feedback">
+            Vui lòng nhập tiêu đề.
+          </div>
         </div>
-        <div>
-          <label for="author">Tác giả:</label>
-          <input type="text" id="author" v-model="author">
+        <div class="col-md-12">
+          <label for="author" class="form-label">Tác giả:</label>
+          <input type="text" id="author" v-model="author" class="form-control" required>
+          <div class="invalid-feedback">
+            Vui lòng nhập tên tác giả.
+          </div>
         </div>
-        <div>
-          <label for="content">Nội dung:</label>
-          <textarea id="content" v-model="content"></textarea>
+        <div class="col-md-12">
+          <label for="content" class="form-label">Nội dung:</label>
+          <textarea id="content" v-model="content" class="form-control" rows="5" required></textarea>
+          <div class="invalid-feedback">
+            Vui lòng nhập nội dung.
+          </div>
         </div>
-        <button type="submit">Đăng bài</button>
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary">Đăng bài</button>
+        </div>
       </form>
     </div>
   </template>
