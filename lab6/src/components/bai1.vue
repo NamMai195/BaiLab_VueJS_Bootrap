@@ -14,12 +14,7 @@
    
     
 </template>
-<script>
-   export default {
-     data() {
-       return {
-         index: 0
-       }
-     }
-   }
+<script setup>
+  import { ref } from 'vue';
+  const index=ref(0);
 </script>
