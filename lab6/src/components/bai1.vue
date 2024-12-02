@@ -1,6 +1,6 @@
 <template>
    <div class="card">
-     <h2>Nhập điểm đi cu</h2>
+     <h2>Nhập điểm </h2>
     <div class="card-body">
         <input v-model="index" class="card-title" type="text"></input>
         <p class="card-text" v-if='index < 5 && index>=0'>Yếu</p>

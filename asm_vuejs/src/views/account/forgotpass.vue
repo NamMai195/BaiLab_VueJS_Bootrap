@@ -11,6 +11,7 @@
                   id=""
                   aria-describedby="emailHelpId"
                   placeholder="nhập email đã đăng ký"
+                  required
                 />
               </div>
               <div class="mb-3">
@@ -21,11 +22,12 @@
                   name=""
                   id=""
                   placeholder="Nhập Mã Xác Nhận"
+                  required
                 />
               </div>
-              <button type="submit" class="btn btn-primary mt-3">
+              <RouterLink to="/chuaco" class="btn btn-primary mt-3">
                 Submit
-              </button>
+              </RouterLink>
             </form>
           </div>
 </template>

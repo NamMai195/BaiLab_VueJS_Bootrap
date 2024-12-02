@@ -4,13 +4,13 @@
     <div class="row">
       <div class="col-sm-4" v-for="(item, index) in items" :key="index">
         <div class="card h-100">
-          <img :src="item.image" class="card-img-top" alt="Hình ảnh" />
+          <img :src="item.image" class="card-img-top" alt="Hình ảnh về: {{ item.title }}" /> 
           <div class="card-body d-flex flex-column">
             <h3 class="card-title">{{ item.title }}</h3>
             <button class="btn btn-info mt-auto" @click="item.showDetails = !item.showDetails">
               {{ item.showDetails ? "Ẩn chi tiết" : "Hiện chi tiết" }}
             </button>
-            <p class="card-text" v-if="item.showDetails">{{ item.content }}</p>
+            <p class="card-text" v-show="item.showDetails">{{ item.content }}</p>
           </div>
         </div>
       </div>

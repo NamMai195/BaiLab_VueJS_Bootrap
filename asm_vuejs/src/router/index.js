@@ -3,26 +3,18 @@ import { createRouter, createWebHistory } from 'vue-router'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-    // {
-    //   path: '/',
-    //   name: 'home',
-    //   component: HomeView,
-    // },
-    //Home
     {
       path: '/',
-      name: 'home', 
+      name: 'home',
       component: () => import('../views/index.vue'),
     },
-    //Post
     {
       path: '/post',
       name: 'post',
       component: () => import('../views/post/listpost.vue'),
     },
-    //postdetail
     {
-      path: '/postdetail',
+      path: '/post/:id', 
       name: 'postdetail',
       component: () => import('../views/post/postdetail.vue'),
     },
@@ -37,22 +29,22 @@ const router = createRouter({
       component: () => import('../views/account/login.vue'),
     },
     {
-      path: '/resgin',
-      name: 'resgin',
-      component: () => import('../views/account/res.vue'),
+      path: '/register', 
+      name: 'register', 
+      component: () => import('../views/account/res.vue'), 
     },
     {
       path: '/logout',
       name: 'logout',
-      component: () => import('../views/index.vue'),
+      component: () => import('../views/index.vue'), 
     },
     {
-      path: '/fogot',
-      name: 'fogotpass',
+      path: '/forgot', 
+      name: 'forgotpass',
       component: () => import('../views/account/forgotpass.vue'),
     },
     {
-      path: '/videodetail',
+      path: '/video/:id', 
       name: 'videodetail',
       component: () => import('../views/viewvideos/videodetail.vue'),
     },
@@ -60,6 +52,11 @@ const router = createRouter({
       path: '/video',
       name: 'listvideo',
       component: () => import('../views/viewvideos/listvideo.vue'),
+    },
+    {
+      path: '/crudvideo',
+      name: 'crudvideo',
+      component: () => import('../views/viewvideos/crudpost.vue'),
     },
     {
       path: '/info',
@@ -71,8 +68,6 @@ const router = createRouter({
       name: 'chuaco',
       component: () => import('../views/common/chuaco.vue'),
     },
-    
-
   ],
 })
 

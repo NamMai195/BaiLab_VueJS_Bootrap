@@ -9,7 +9,8 @@ import { RouterLink, RouterView } from 'vue-router'
         <nav>
             <RouterLink to="/">Bai1</RouterLink> |
             <RouterLink to="/bai2">Bai2</RouterLink>|
-            <RouterLink to="/bai3">Bai3</RouterLink>
+            <RouterLink to="/bai3">Bai3</RouterLink>|
+            <RouterLink to="/bai4">Bai4</RouterLink>
         </nav>
 
         <div>

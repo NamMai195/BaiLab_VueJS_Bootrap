@@ -1,191 +1,186 @@
-<script setup>
-import slider from "./common/slider.vue"
-</script>
-
 <template>
-    <slider></slider>
+    <!-- <slider></slider> -->
     <section class="container mt-4">
-        <h2 class="text-info mb-4">Blog Xu Hướng</h2>
-        <div class="row">
-            <!-- Blog card 1 -->
-            <div class="col-md-6 mb-4">
-                <div class="card">
-                    <img src="@/images/tap-piltes.jpg" alt="lỗi" class="card-img-top" />
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            Phương pháp tập Pilates giúp phục hồi chấn thương cột sống
-                            <i class="bi bi-chat-left-fill"></i> 16
-                        </h5>
-                        <p class="card-text">
-                            Ngoài việc giúp duy trì vóc dáng, cải thiện sự linh hoạt, dẻo
-                            dai cho người tập, Pilates giúp cơ bắp và các khớp mọc dài
-                            hơn, kéo giãn hơn...
-                        </p>
-                    </div>
-                </div>
+      <h2 class="text-info mb-4 text-center">Blog Xu Hướng</h2> 
+      <div class="row">
+        <div class="col-md-4 mb-4" v-for="post in paginatedPosts" :key="post.id">
+          <div class="card h-100"> 
+            <router-link :to="`/post/${post.id}`">
+              <img :src="post.image" :alt="post.title" class="card-img-top" />
+            </router-link>
+            <div class="card-body d-flex flex-column"> 
+              <h5 class="card-title">
+                {{ post.title }}
+              </h5>
+              <p class="card-text flex-grow-1"> 
+                {{ truncateText(post.content, 100) }}
+              </p>
+              <div class="mt-auto"> 
+                <span class="text-muted">
+                  <i class="bi bi-eye-fill"></i> {{ post.views || 0 }}
+                </span>
+              </div>
             </div>
-
-            <!-- Blog card 2 -->
-            <div class="col-md-6 mb-4">
-                <div class="list-group">
-                    <a href="#" class="list-group-item list-group-item-action">
-                        <div class="d-flex">
-                            <div class="col-4">
-                                <img
-                                    src="@/images/corevalue.jpg"
-                                    alt="biết ơn đời"
-                                    class="rounded-circle mx-auto d-block"
-                                    style="width: 60px; height: 60px; object-fit: cover"
-                                />
-                            </div>
-                            <div class="col-8">
-                                <h6 class="mb-0">Biết ơn đời, đời sẽ thương ta</h6>
-                                <span class="text-muted">
-                                    <i class="bi bi-chat-fill"></i> 30
-                                </span>
-                            </div>
-                        </div>
-                    </a>
-
-                    <a href="#" class="list-group-item list-group-item-action">
-                        <div class="d-flex">
-                            <div class="col-4">
-                                <img
-                                    src="@/images/orange_300x300.jpg"
-                                    alt="quả cam"
-                                    class="rounded-circle mx-auto d-block"
-                                    style="width: 60px; height: 60px; object-fit: cover"
-                                />
-                            </div>
-                            <div class="col-8">
-                                <h6 class="mb-0">9 tác dụng tuyệt vời của quả cam</h6>
-                                <span class="text-muted">
-                                    <i class="bi bi-chat-fill"></i> 28
-                                </span>
-                            </div>
-                        </div>
-                    </a>
-
-                    <a href="#" class="list-group-item list-group-item-action">
-                        <div class="d-flex">
-                            <div class="col-4">
-                                <img
-                                    src="@/images/sesameoil_300x300.jpg"
-                                    alt="dầu dừa"
-                                    class="rounded-circle mx-auto d-block"
-                                    style="width: 60px; height: 60px; object-fit: cover"
-                                />
-                            </div>
-                            <div class="col-8">
-                                <h6 class="mb-0">10 công dụng bất ngờ từ dầu dừa</h6>
-                                <span class="text-muted">
-                                    <i class="bi bi-chat-fill"></i> 15
-                                </span>
-                            </div>
-                        </div>
-                    </a>
-
-                    <a href="#" class="list-group-item list-group-item-action">
-                        <div class="d-flex">
-                            <div class="col-4">
-                                <img
-                                    src="@/images/spinach_300x300.jpg"
-                                    alt="rau xanh"
-                                    class="rounded-circle mx-auto d-block"
-                                    style="width: 60px; height: 60px; object-fit: cover"
-                                />
-                            </div>
-                            <div class="col-8">
-                                <h6 class="mb-0">Tác dụng tuyệt vời của rau xanh</h6>
-                                <span class="text-muted">
-                                    <i class="bi bi-chat-fill"></i> 21
-                                </span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
+          </div>
         </div>
-
-        <!-- Load More Button -->
-        <div class="d-flex justify-content-center mt-3">
-            <button class="btn btn-info text-white px-4">Xem thêm</button>
-        </div>
-
-        <h4 class="text-center text-info mt-5">VIDEO - ĐỪNG BỎ LỠ</h4>
-
-        <div class="row">
-            <!-- Video Card 1 -->
-            <div class="col-sm-6 mb-4">
-                <div class="card text-start">
-                    <img class="card-img-top" src="@/images/video1.jpg" alt="Title" />
-                    <div class="card-body">
-                        <h4 class="card-title">cncjndc</h4>
-                        <p class="card-text">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                            Molestias, nihil ducimus omnis quae porro impedit at nam
-                            eius, officiis asperiores suscipit, reiciendis incidunt
-                            repellendus? Doloremque ullam quae quibusdam sapiente nihil!
-                        </p>
-                    </div>
-                </div>
+      </div>
+  
+      <div class="d-flex justify-content-center mt-3">
+        <nav aria-label="Page navigation example">
+          <ul class="pagination">
+            <li class="page-item" :class="{ disabled: currentPagePosts === 1 }">
+              <a class="page-link" href="#" aria-label="Previous" @click.prevent="goToPagePosts(currentPagePosts - 1)">
+                <span aria-hidden="true">«</span>
+              </a>
+            </li>
+            <li class="page-item" v-for="page in totalPagesPosts" :key="page" :class="{ active: currentPagePosts === page }">
+              <a class="page-link" href="#" @click.prevent="goToPagePosts(page)">{{ page }}</a>
+            </li>
+            <li class="page-item" :class="{ disabled: currentPagePosts === totalPagesPosts }">
+              <a class="page-link" href="#" aria-label="Next" @click.prevent="goToPagePosts(currentPagePosts + 1)">
+                <span aria-hidden="true">»</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+  
+      <h4 class="text-center text-info mt-5">VIDEO - ĐỪNG BỎ LỠ</h4>
+      <div class="row">
+        <div class="col-md-4 mb-4" v-for="video in paginatedVideos" :key="video.id">
+          <div class="card text-start h-100"> 
+            <router-link :to="`/video/${video.id}`">
+              <img class="card-img-top" :src="getThumbnailUrl(video.youtubeLink)" alt="Video thumbnail">
+            </router-link>
+            <div class="card-body d-flex flex-column"> 
+              <h4 class="card-title">{{ video.title }}</h4>
+              <p class="card-text flex-grow-1"> 
+                {{ truncateText(video.description, 100) }}
+              </p>
+              <div class="mt-auto"> 
+                <span class="text-muted">
+                  <i class="bi bi-eye-fill"></i> {{ video.views || 0 }}
+                </span>
+              </div>
             </div>
-
-            <!-- Video Card 2 -->
-            <div class="col-sm-6 mb-4">
-                <div class="card text-start">
-                    <img class="card-img-top" src="@/images/video2.jpg" alt="Title" />
-                    <div class="card-body">
-                        <h4 class="card-title">csc</h4>
-                        <p class="card-text">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                            Molestias, nihil ducimus omnis quae porro impedit at nam
-                            eius, officiis asperiores suscipit, reiciendis incidunt
-                            repellendus? Doloremque ullam quae quibusdam sapiente nihil!
-                        </p>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
-
-        <div class="row">
-            <!-- Video Card 3 -->
-            <div class="col-sm-6 mb-4">
-                <div class="card text-start">
-                    <img class="card-img-top" src="@/images/video3.jpg" alt="Title" />
-                    <div class="card-body">
-                        <h4 class="card-title">fvdfv</h4>
-                        <p class="card-text">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                            Molestias, nihil ducimus omnis quae porro impedit at nam
-                            eius, officiis asperiores suscipit, reiciendis incidunt
-                            repellendus? Doloremque ullam quae quibusdam sapiente nihil!
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Video Card 4 -->
-            <div class="col-sm-6 mb-4">
-                <div class="card text-start">
-                    <img class="card-img-top" src="@/images/video4.jpg" alt="Title" />
-                    <div class="card-body">
-                        <h4 class="card-title">svsv</h4>
-                        <p class="card-text">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                            Molestias, nihil ducimus omnis quae porro impedit at nam
-                            eius, officiis asperiores suscipit, reiciendis incidunt
-                            repellendus? Doloremque ullam quae quibusdam sapiente nihil!
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Load More Button for Videos -->
-        <div class="d-flex justify-content-center mt-3">
-            <button class="btn btn-info text-white px-4">Xem thêm</button>
-        </div>
+      </div>
+  
+      <div class="d-flex justify-content-center mt-3">
+        <nav aria-label="Page navigation example">
+          <ul class="pagination">
+            <li class="page-item" :class="{ disabled: currentPageVideos === 1 }">
+              <a class="page-link" href="#" aria-label="Previous" @click.prevent="goToPageVideos(currentPageVideos - 1)">
+                <span aria-hidden="true">«</span>
+              </a>
+            </li>
+            <li class="page-item" v-for="page in totalPagesVideos" :key="page" :class="{ active: currentPageVideos === page }">
+              <a class="page-link" href="#" @click.prevent="goToPageVideos(page)">{{ page }}</a>
+            </li>
+            <li class="page-item" :class="{ disabled: currentPageVideos === totalPagesVideos }">
+              <a class="page-link" href="#" aria-label="Next" @click.prevent="goToPageVideos(currentPageVideos + 1)">
+                <span aria-hidden="true">»</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </section>
-</template>
+  </template>
 
+<script>
+import axios from "axios";
+
+export default {
+  components: {
+    slider: () => import("./common/slider.vue"),
+  },
+  data() {
+    return {
+      posts: [],
+      relatedPosts: [],
+      videos: [],
+      currentPagePosts: 1,
+      currentPageVideos: 1,
+      postsPerPage: 3, // Hiển thị 2 bài viết trên mỗi trang
+      videosPerPage: 4, // Hiển thị 4 video trên mỗi trang
+    };
+  },
+  computed: {
+    paginatedPosts() {
+      const startIndex = (this.currentPagePosts - 1) * this.postsPerPage;
+      const endIndex = startIndex + this.postsPerPage;
+      return this.posts.slice(startIndex, endIndex);
+    },
+    paginatedVideos() {
+      const startIndex = (this.currentPageVideos - 1) * this.videosPerPage;
+      const endIndex = startIndex + this.videosPerPage;
+      return this.videos.slice(startIndex, endIndex);
+    },
+    totalPagesPosts() {
+      return Math.ceil(this.posts.length / this.postsPerPage);
+    },
+    totalPagesVideos() {
+      return Math.ceil(this.videos.length / this.videosPerPage);
+    },
+  },
+  created() {
+    this.fetchPosts();
+    this.fetchRelatedPosts();
+    this.fetchVideos();
+  },
+  methods: {
+    async fetchPosts() {
+      try {
+        const response = await axios.get("http://localhost:8001/api/posts");
+        this.posts = response.data;
+      } catch (error) {
+        console.error("Lỗi khi lấy danh sách bài viết", error);
+      }
+    },
+    async fetchRelatedPosts() {
+      try {
+        const response = await axios.get("http://localhost:8001/api/posts");
+        this.relatedPosts = response.data.slice(0, 4);
+      } catch (error) {
+        console.error("Lỗi khi lấy danh sách bài viết liên quan", error);
+      }
+    },
+    async fetchVideos() {
+      try {
+        const response = await axios.get("http://localhost:8001/api/videos");
+        this.videos = response.data;
+      } catch (error) {
+        console.error("Lỗi khi lấy danh sách video", error);
+      }
+    },
+    truncateText(text, maxLength) {
+      if (text.length <= maxLength) {
+        return text;
+      }
+      return text.substring(0, maxLength) + "...";
+    },
+    goToPagePosts(page) {
+      if (page >= 1 && page <= this.totalPagesPosts) {
+        this.currentPagePosts = page;
+      }
+    },
+    goToPageVideos(page) {
+      if (page >= 1 && page <= this.totalPagesVideos) {
+        this.currentPageVideos = page;
+      }
+    },
+    getYoutubeVideoId(url) {
+      const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+      const match = url.match(regExp);
+      return (match && match[2].length === 11) ? match[2] : null;   
+
+    },
+    getThumbnailUrl(youtubeLink) {
+      const videoId = this.getYoutubeVideoId(youtubeLink);
+      return `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`; 
+    },
+  },
+};
+</script>
